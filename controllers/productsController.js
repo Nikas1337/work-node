@@ -17,14 +17,12 @@ module.exports = {
     },
 
     async edit(req, res){
-        // console.log(req.params)
         let bodyreq = req.body
         res.set('Content-Type','application/json')
         Product.findByIdAndUpdate(req.params.id, bodyreq,(err, result)=>{
             if (err) return console.log(err)
         }).then(()=>{
             Product.findById(req.params.id, function (err, product) {
-                console.log(product)
                 res.send(product)
             });
         })
